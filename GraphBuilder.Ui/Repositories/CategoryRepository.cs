@@ -13,7 +13,7 @@ namespace GraphBuilder.Ui.Repositories
             // parameters.Add("id", categ.Id.ToString());
             parameters.Add("name", cateogryName);
             var result = Execute("CREATE (c:" + Category.Label + " {id: {id}, name: {name}})", parameters);
-            return new Category(Guid.Parse(result.First()["id"].ToString()), cateogryName);
+            return new Category(cateogryName);
         }
 
         public void DeleteAll()

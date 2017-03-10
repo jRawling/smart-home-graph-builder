@@ -12,9 +12,22 @@ namespace GraphBuilder.Ui.Repositories
             parameters.Add("id", product.Id.ToString());
             parameters.Add("brandId", product.Brand.Id.ToString());
             parameters.Add("name", product.Name);
+            parameters.Add("price", product.Price);
 
             string clause = "MATCH (b:Brand {id: {brandId}})";
             string relationships = ", (p)-[:made_by]->(b)";
+
+            if(product is Bundle)
+            {
+                Bundle bundle = product as Bundle;
+                Dictionary<string, string> productNodes = GetNodes("product", bundle.Products);
+                AddIdsToParameters(parameters, productNodes);
+                foreach (string key in productNodes.Keys)
+                {
+                    clause += string.Format(", ({0}:{1} {{id: {{{0}Id}}}})", key, Product.Label);
+                    relationships += string.Format(", (p)-[:contains]->({0})", key);
+                }
+            }
 
             if (product is Standalone)
             {
@@ -22,7 +35,7 @@ namespace GraphBuilder.Ui.Repositories
 
                 if (standalone.ThirdyPartyApps != null)
                 {
-                    Dictionary<string, string> appNodes = GetAppNodes(standalone.ThirdyPartyApps);
+                    Dictionary<string, string> appNodes = GetNodes("app", standalone.ThirdyPartyApps);
                     AddIdsToParameters(parameters, appNodes);
                     foreach (string key in appNodes.Keys)
                     {
@@ -45,7 +58,7 @@ namespace GraphBuilder.Ui.Repositories
             }
 
 
-            clause += string.Format(" \nCREATE (p:{0} {{id: {{id}}, name: {{name}}}})", GetLabel(product));
+            clause += string.Format(" \nCREATE (p:{0} {{id: {{id}}, name: {{name}}, price: {{price}}}})", GetLabel(product));
             clause += relationships;
 
             Execute(clause, parameters);
@@ -56,20 +69,21 @@ namespace GraphBuilder.Ui.Repositories
         {
             if (product is Accessory) { return Accessory.Label; }
             else if (product is Standalone) { return Standalone.Label; }
+            else if (product is Bundle) { return Bundle.Label; }
             else { return Hub.Label; }
         }
 
-        private Dictionary<string, string> GetAppNodes(IEnumerable<App> thirdPartyApps)
+        private Dictionary<string, string> GetNodes(string prefix, IEnumerable<Node> nodes)
         {
-            Dictionary<string, string> nodes = new Dictionary<string, string>();
+            Dictionary<string, string> nodesToReturn = new Dictionary<string, string>();
             int index = 0;
-            foreach (App app in thirdPartyApps)
+            foreach (Node node in nodes)
             {
-                nodes.Add(string.Format("app{0}", index), app.Id.ToString());
+                nodesToReturn.Add(string.Format("{0}{0}{1}", prefix, index), node.Id.ToString());
                 index++;
             }
 
-            return nodes;
+            return nodesToReturn;
         }
 
         public void DeleteAll()

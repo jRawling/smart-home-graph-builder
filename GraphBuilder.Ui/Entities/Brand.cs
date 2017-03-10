@@ -2,15 +2,13 @@
 
 namespace GraphBuilder.Ui.Entities
 {
-    public class Brand
+    public class Brand : Node
     {
         public static string Label = "Brand";
-        public Guid Id { get; private set; }
         public string Name { get; private set; }
 
-        public Brand(string name)
+        public Brand(string name) : base()
         {
-            Id = Guid.NewGuid();
             Name = name;
         }
     }

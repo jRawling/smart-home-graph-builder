@@ -53,13 +53,14 @@ class Program
         Standalone echo = productRepository.Create(new Standalone("Echo", amazon, 149.99, alexa, null)) as Standalone;
         Console.WriteLine("- British Gas");
         Hub hiveHub = productRepository.Create(new Hub("Hive Hub", britishGas, 79.99)) as Hub;
-        Accessory hiveThermostat = productRepository.Create(new Accessory("Hive Thermostat", britishGas, 99.00, hive, new List<App>() { alexa }, hiveHub)) as Accessory;
+        Accessory hiveThermostat = productRepository.Create(new Accessory("Hive Thermostat", britishGas, 99, hive, new List<App>() { alexa }, hiveHub)) as Accessory;
         Accessory hivePlug = productRepository.Create(new Accessory("Hive Active Plug", britishGas, 39.99, hive, new List<App>() { alexa }, hiveHub)) as Accessory;
+        Bundle hiveActiveHeating = productRepository.Create(new Bundle("Hive Active Heating", britishGas, 179.99, new List<Product>() { hiveHub, hiveThermostat })) as Bundle;
         Console.WriteLine("- Philips");
         Console.WriteLine("- Veho");
         Standalone vehoBulb = productRepository.Create(new Standalone("Veho Kasa Bluetooth Smart LED Light Bulb - B22", veho, 29.99, vehoApp, null)) as Standalone;
         Console.WriteLine("- SmartThings");
         Console.WriteLine("- Nest");
-        Standalone nestThermostat = productRepository.Create(new Standalone("Nest Learning Thermostat", nest, 199.00, nestApp, null)) as Standalone;
+        Standalone nestThermostat = productRepository.Create(new Standalone("Nest Learning Thermostat", nest, 199, nestApp, null)) as Standalone;
     }
 }
