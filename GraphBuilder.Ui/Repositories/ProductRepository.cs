@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
-using GraphBuilder.Entities;
+using GraphBuilder.Ui.Entities;
 
-namespace GraphBuilder.Repositories
+namespace GraphBuilder.Ui.Repositories
 {
     public class ProductRepository : Neo4jRepository
     {

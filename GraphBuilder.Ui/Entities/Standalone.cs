@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GraphBuilder.Entities
+namespace GraphBuilder.Ui.Entities
 {
     public class Standalone : Product
     {
@@ -8,7 +8,7 @@ namespace GraphBuilder.Entities
         public App NativeApp { get; private set; }
         public IEnumerable<App> ThirdyPartyApps { get; private set; }
 
-        public Standalone(string name, Brand brand, App nativeApp, IEnumerable<App> thirdPartyApps) : base(name, brand)
+        public Standalone(string name, Brand brand, double price, App nativeApp, IEnumerable<App> thirdPartyApps) : base(name, brand, price)
         {
             NativeApp = nativeApp;
             ThirdyPartyApps = thirdPartyApps;

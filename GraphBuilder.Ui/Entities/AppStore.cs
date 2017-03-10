@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GraphBuilder.Entities
+namespace GraphBuilder.Ui.Entities
 {
     public class AppStore
     {

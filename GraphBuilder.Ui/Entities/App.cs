@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace GraphBuilder.Entities
+namespace GraphBuilder.Ui.Entities
 {
     public class App
     {

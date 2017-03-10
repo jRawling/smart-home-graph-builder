@@ -1,10 +1,10 @@
-﻿using GraphBuilder.Entities;
+﻿using GraphBuilder.Ui.Entities;
 using Neo4j.Driver.V1;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GraphBuilder.Repositories
+namespace GraphBuilder.Ui.Repositories
 {
     public class AppRepository : Neo4jRepository
     {

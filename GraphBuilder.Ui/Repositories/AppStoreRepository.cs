@@ -1,7 +1,7 @@
-﻿using GraphBuilder.Entities;
+﻿using GraphBuilder.Ui.Entities;
 using System.Collections.Generic;
 
-namespace GraphBuilder.Repositories
+namespace GraphBuilder.Ui.Repositories
 {
     public class AppStoreRepository : Neo4jRepository
     {

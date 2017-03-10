@@ -1,7 +1,7 @@
 ﻿using Neo4j.Driver.V1;
 using System.Collections.Generic;
 
-namespace GraphBuilder.Repositories
+namespace GraphBuilder.Ui.Repositories
 {
     public abstract class Neo4jRepository
     {

@@ -1,9 +1,9 @@
-﻿using GraphBuilder.Entities;
+﻿using GraphBuilder.Ui.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GraphBuilder.Repositories
+namespace GraphBuilder.Ui.Repositories
 {
     public class CategoryRepository : Neo4jRepository
     {
