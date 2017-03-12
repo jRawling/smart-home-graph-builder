@@ -16,7 +16,7 @@ class Program
         Console.WriteLine("Creating app stores");
         AppStoreRepository appStoreRepository = new AppStoreRepository();
         appStoreRepository.DeleteAll();
-        AppStore appleStore = appStoreRepository.Create(new AppStore("Apple"));
+        AppStore appleStore = appStoreRepository.Create(new AppStore("Apple App Store"));
         //  AppStore googleStore = appStoreRepository.Create(new AppStore("Google"));
 
         Console.WriteLine("Creating brands");
@@ -29,6 +29,7 @@ class Program
         Brand philips = brandRepository.Create(new Brand("Philips"));
         Brand smartThings = brandRepository.Create(new Brand("SmartThings"));
         Brand nest = brandRepository.Create(new Brand("Nest"));
+        Brand apple = brandRepository.Create(new Brand("Apple"));
 
         //Console.WriteLine("Creating catagories");
         //Category lighting = catalogue.CreateCategory("Lighting");
@@ -45,12 +46,14 @@ class Program
         App vehoApp = appRepository.Create(new App("Veho Kasa", veho, new List<AppStore>() { appleStore }));
         App smartThingsApp = appRepository.Create(new App("SmartThings Mobile", smartThings, new List<AppStore>() { appleStore }));
         App nestApp = appRepository.Create(new App("Nest", nest, new List<AppStore>() { appleStore }));
+        App homeKit = appRepository.Create(new App("Home Kit", apple, new List<AppStore>() { appleStore }));
 
         Console.WriteLine("Creating products:");
         ProductRepository productRepository = new ProductRepository();
         productRepository.DeleteAll();
         Console.WriteLine("- Amazon");
         Standalone echo = productRepository.Create(new Standalone("Echo", amazon, 149.99, alexa, null)) as Standalone;
+        Standalone echoDot = productRepository.Create(new Standalone("Echo Dot", amazon, 49.99, alexa, null)) as Standalone;
         Console.WriteLine("- British Gas");
         Hub hiveHub = productRepository.Create(new Hub("Hive Hub", britishGas, 79.99)) as Hub;
         Accessory hiveThermostat = productRepository.Create(new Accessory("Hive Thermostat", britishGas, 99, hive, new List<App>() { alexa }, hiveHub)) as Accessory;
