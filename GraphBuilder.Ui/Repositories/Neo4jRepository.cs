@@ -5,7 +5,7 @@ namespace GraphBuilder.Ui.Repositories
 {
     public abstract class Neo4jRepository
     {
-        private readonly string Server = "bolt://192.168.0.8:32771";
+        private readonly string Server = "bolt://192.168.12.197:32771";
         private readonly IAuthToken AuthToken = AuthTokens.Basic("neo4j", "password");
 
         protected IStatementResult Execute(string statement)
