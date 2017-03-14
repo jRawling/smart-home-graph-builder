@@ -2,13 +2,13 @@
 
 namespace GraphBuilder.Ui.Entities
 {
-    public class AppStore : Node
+    public class Store : Node
     {
-        public static string Label = "AppStore";
+        public static string Label = "Store";
         public string Name { get; private set; }
 		public Brand Brand { get; private set; }
 
-        public AppStore(string name, Brand brand) : base()
+        public Store(string name, Brand brand) : base()
         {
             Name = name;
 			Brand = brand;

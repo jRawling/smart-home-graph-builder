@@ -19,6 +19,7 @@ namespace GraphBuilder.Ui
 		public Brand Dlink { get; private set; }
 		public Brand Google { get; private set; }
 		public Brand Veho { get; private set; }
+		public Brand Tado { get; private set; }
 
         public BrandManager()
         {
