@@ -21,7 +21,7 @@ namespace GraphBuilder.Ui.Repositories
 
             foreach (string key in appStoreNodes.Keys)
             {
-                clause += string.Format("({0}:{1} {{id: {{{0}Id}}}}), ", key, AppStore.Label);
+                clause += string.Format("({0}:{1} {{id: {{{0}Id}}}}), ", key, Store.Label);
             }
 
             clause += "(b:Brand {id: {brandId}})";
@@ -41,13 +41,13 @@ namespace GraphBuilder.Ui.Repositories
             DeleteAll(App.Label);
         }
 
-        private Dictionary<string, string> GetAppStoreNodes(IEnumerable<AppStore> appStores)
+        private Dictionary<string, string> GetAppStoreNodes(IEnumerable<Store> stores)
         {
             Dictionary<string, string> nodes = new Dictionary<string, string>();
             int index = 0;
-            foreach (AppStore appStore in appStores)
+            foreach (Store store in stores)
             {
-                nodes.Add(string.Format("appStore{0}", index), appStore.Id.ToString());
+                nodes.Add(string.Format("appStore{0}", index), store.Id.ToString());
                 index++;
             }
 

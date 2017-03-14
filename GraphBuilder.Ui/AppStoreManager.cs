@@ -4,20 +4,20 @@ using GraphBuilder.Ui.Repositories;
 
 namespace GraphBuilder.Ui
 {
-	public class AppStoreManager
+	public class StoreManager
 	{
-		public AppStore AppStore { get; private set; }
-		public AppStore Play { get; private set; }
+		public Store Store { get; private set; }
+		public Store Play { get; private set; }
 
-		public IEnumerable<AppStore> All { get; private set; }
+		public IEnumerable<Store> All { get; private set; }
 
-        public AppStoreManager(BrandManager brands)
+        public StoreManager(BrandManager brands)
         {
-            AppStoreRepository appStoreRepository = new AppStoreRepository();
-            appStoreRepository.DeleteAll();
-			AppStore = appStoreRepository.Create(new AppStore("App Store", brands.Apple));
-			Play = appStoreRepository.Create(new AppStore("Play", brands.Google));
-			All = new List<AppStore>() { AppStore, Play };
+            StoreRepository storeRepository = new StoreRepository();
+            storeRepository.DeleteAll();
+			Store = storeRepository.Create(new Store("App Store", brands.Apple));
+			Play = storeRepository.Create(new Store("Play", brands.Google));
+			All = new List<Store>() { Store, Play };
         }
     }
 }

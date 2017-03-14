@@ -20,6 +20,7 @@ namespace GraphBuilder.Ui
 		public Brand Google { get; private set; }
 		public Brand Veho { get; private set; }
 		public Brand Tado { get; private set; }
+        public Brand Samsung { get; private set; }
 
         public BrandManager()
         {
@@ -39,6 +40,7 @@ namespace GraphBuilder.Ui
             Panasonic = brandRepository.Create(new Brand("Panasonic"));
 			Dlink = brandRepository.Create(new Brand("D-Link"));
 			Google = brandRepository.Create(new Brand("Google"));
+            Samsung = brandRepository.Create(new Brand("Samsung"));
         }
     }
 }

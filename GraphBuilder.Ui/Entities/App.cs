@@ -7,14 +7,14 @@ namespace GraphBuilder.Ui.Entities
     {
         public static string Label = "App";
         public string Name { get; private set; }
-        public IEnumerable<AppStore> AvailableOn { get; private set; }
+        public IEnumerable<Store> AvailableOn { get; private set; }
         public Brand Brand { get; private set; }
 
-        public App(string name, Brand brand, IEnumerable<AppStore> appStores) : base()
+        public App(string name, Brand brand, IEnumerable<Store> stores) : base()
         {
             Name = name;
             Brand = brand;
-            AvailableOn = appStores;
+            AvailableOn = stores;
         }
     }
 }

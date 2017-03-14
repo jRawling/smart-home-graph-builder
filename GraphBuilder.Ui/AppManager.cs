@@ -16,21 +16,25 @@ namespace GraphBuilder.Ui
 		public App NetatmoThermostat { get; private set; }
 		public App NetatmoSecurity { get; private set; }
 		public App NetatmoWeather { get; private set; }
+        public App Ring { get; private set; }
+        public App SmartCam { get; private set; }
 
-		public AppManager(BrandManager brands, AppStoreManager appStores) 
+        public AppManager(BrandManager brands, StoreManager stores) 
 		{
 			AppRepository appRepository = new AppRepository();
 			appRepository.DeleteAll();
-			Alexa = appRepository.Create(new App("Alexa", brands.Amazon, appStores.All));
-			HomeKit = appRepository.Create(new App("HomeKit", brands.Apple, appStores.All));
-			Hive = appRepository.Create(new App("Hive", brands.BritishGas, appStores.All));
-			Hue = appRepository.Create(new App("Hue", brands.Philips, appStores.All));
-			Veho = appRepository.Create(new App("Veho", brands.Veho, appStores.All));
-			SmartThings = appRepository.Create(new App("SmartThings", brands.SmartThings, appStores.All));
-			Nest = appRepository.Create(new App("Nest", brands.Nest, appStores.All));
-			NetatmoThermostat = appRepository.Create(new App("Netatmo Thermostat", brands.Netatmo, appStores.All));
-			NetatmoSecurity = appRepository.Create(new App("Netatmo Security", brands.Netatmo, appStores.All));
-			NetatmoWeather = appRepository.Create(new App("Netatmo Weather", brands.Netatmo, appStores.All));
+			Alexa = appRepository.Create(new App("Alexa", brands.Amazon, stores.All));
+			HomeKit = appRepository.Create(new App("HomeKit", brands.Apple, stores.All));
+			Hive = appRepository.Create(new App("Hive", brands.BritishGas, stores.All));
+			Hue = appRepository.Create(new App("Hue", brands.Philips, stores.All));
+			Veho = appRepository.Create(new App("Veho", brands.Veho, stores.All));
+			SmartThings = appRepository.Create(new App("SmartThings", brands.SmartThings, stores.All));
+			Nest = appRepository.Create(new App("Nest", brands.Nest, stores.All));
+			NetatmoThermostat = appRepository.Create(new App("Netatmo Thermostat", brands.Netatmo, stores.All));
+			NetatmoSecurity = appRepository.Create(new App("Netatmo Security", brands.Netatmo, stores.All));
+			NetatmoWeather = appRepository.Create(new App("Netatmo Weather", brands.Netatmo, stores.All));
+            Ring = appRepository.Create(new App("Ring", brands.Ring, stores.All));
+            SmartCam = appRepository.Create(new App("SmartCam", brands.Samsung, stores.All));
 		}
 	}
 }
