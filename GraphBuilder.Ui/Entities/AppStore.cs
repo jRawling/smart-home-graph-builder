@@ -6,10 +6,12 @@ namespace GraphBuilder.Ui.Entities
     {
         public static string Label = "AppStore";
         public string Name { get; private set; }
+		public Brand Brand { get; private set; }
 
-        public AppStore(string name) : base()
+        public AppStore(string name, Brand brand) : base()
         {
             Name = name;
+			Brand = brand;
         }
     }
 }

@@ -1,11 +1,15 @@
 ﻿using System;
-using Neo4j.Driver.V1;
 using System.Collections.Generic;
 using GraphBuilder.Ui.Entities;
 using GraphBuilder.Ui.Repositories;
+using GraphBuilder.Ui;
 
 class Program
 {
+	public static BrandManager brands;
+	public static AppStoreManager appStores;
+	public static AppManager apps;
+
     static void Main(string[] args)
     {
         Test();
@@ -13,60 +17,15 @@ class Program
 
     private static void Test()
     {
-        Console.WriteLine("Creating app stores");
-        AppStoreRepository appStoreRepository = new AppStoreRepository();
-        appStoreRepository.DeleteAll();
-        AppStore appleStore = appStoreRepository.Create(new AppStore("Apple App Store"));
-        AppStore googleStore = appStoreRepository.Create(new AppStore("Google"));
-
-        Console.WriteLine("Creating brands");
-        BrandRepository brandRepository = new BrandRepository();
-        brandRepository.DeleteAll();
-        Brand amazon = brandRepository.Create(new Brand("Amazon"));
-        Brand belkin = brandRepository.Create(new Brand("Belkin"));
-        Brand britishGas = brandRepository.Create(new Brand("British Gas"));
-        Brand veho = brandRepository.Create(new Brand("Veho"));
-        Brand philips = brandRepository.Create(new Brand("Philips"));
-        Brand smartThings = brandRepository.Create(new Brand("SmartThings"));
-        Brand nest = brandRepository.Create(new Brand("Nest"));
-        Brand apple = brandRepository.Create(new Brand("Apple"));
-        Brand netatmo = brandRepository.Create(new Brand("Netatmo"));
-        Brand netgear = brandRepository.Create(new Brand("Netgear"));
-        Brand ring = brandRepository.Create(new Brand("Ring"));
-        Brand panasonic = brandRepository.Create(new Brand("Panasonic"));
-        Brand dlink = brandRepository.Create(new Brand("D-Link"));
-
-        //Console.WriteLine("Creating catagories");
-        //Category lighting = catalogue.CreateCategory("Lighting");
-        //Category heating = catalogue.CreateCategory("Heating");
-        //Category smartAssistant = catalogue.CreateCategory("Smart Assistant");
-        //Category hub = catalogue.CreateCategory("Hub");
-
+		Console.WriteLine("Creating brands...");
+		brands = new BrandManager();
+        Console.WriteLine("Creating app stores...");
+		appStores = new AppStoreManager(brands);
         Console.WriteLine("Creating apps");
-        AppRepository appRepository = new AppRepository();
-        appRepository.DeleteAll();
-        App alexa = appRepository.Create(new App("Alexa", amazon, new List<AppStore>() { appleStore }));
-        App hive = appRepository.Create(new App("Hive", britishGas, new List<AppStore>() { appleStore }));
-        App hue = appRepository.Create(new App("Hue", philips, new List<AppStore>() { appleStore }));
-        App vehoApp = appRepository.Create(new App("Veho Kasa", veho, new List<AppStore>() { appleStore }));
-        App smartThingsApp = appRepository.Create(new App("SmartThings Mobile", smartThings, new List<AppStore>() { appleStore }));
-        App nestApp = appRepository.Create(new App("Nest", nest, new List<AppStore>() { appleStore }));
-        App homeKit = appRepository.Create(new App("Home Kit", apple, new List<AppStore>() { appleStore }));
-        App netatmoThermostatApp = appRepository.Create(new App("Thermostat by Netatmo", netatmo, new List<AppStore>() { appleStore }));
-        App netatmoSecurityApp = appRepository.Create(new App("Netatmo Security", netatmo, new List<AppStore>() { appleStore }));
-        App netatmoWeatherApp = appRepository.Create(new App("Netatmo Weather", netatmo, new List<AppStore>() { appleStore }));
-
+		apps = new AppManager(brands, appStores);
         Console.WriteLine("Creating products:");
         ProductRepository productRepository = new ProductRepository();
-        productRepository.DeleteAll();
-
-        Amazon(amazon, alexa, productRepository);
-        BritishGas(britishGas, alexa, hive, productRepository);
-        Philips(philips, alexa, hue, smartThingsApp, nestApp, homeKit, productRepository);
-        Veho(veho, vehoApp, productRepository);
-        SmartThings(smartThings, smartThingsApp, productRepository);
-        Nest(nest, alexa, nestApp, productRepository);
-        Netatmo(netatmo, alexa, homeKit, netatmoThermostatApp, netatmoSecurityApp, netatmoWeatherApp, productRepository);
+		productRepository.DeleteAll();
     }
 
     private static void Netatmo(Brand netatmo, App alexa, App homeKit, App netatmoThermostatApp, App netatmoSecurityApp, App netatmoWeatherApp, ProductRepository productRepository)

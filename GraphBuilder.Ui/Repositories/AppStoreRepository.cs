@@ -10,7 +10,9 @@ namespace GraphBuilder.Ui.Repositories
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("id", appStore.Id.ToString());
             parameters.Add("name", appStore.Name);
-            var result = Execute("CREATE (as:" + AppStore.Label + " {id: {id}, name: {name}})", parameters);
+			parameters.Add("brandId", appStore.Brand.Id);
+
+			var result = Execute("MATCh (b:Brand {id:{brandId}}) CREATE (as:" + AppStore.Label + " {id: {id}, name: {name}}), (as)-[:made_by]->(b)", parameters);
             return appStore;
         }
 
